@@ -46,7 +46,7 @@ def preprocess_input(user_input):
 st.markdown("""
     <style>
     .main {
-        background-color: #87CEEB;
+        background-color: #FF1493;
     }
     h1 {
         color: #4b4b4b;
