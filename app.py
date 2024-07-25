@@ -4,7 +4,7 @@ import joblib
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 # Memuat model Random Forest yang telah dilatih
-model = joblib.load('best_modell.pkl')
+model = joblib.load('modelrf.pkl')
 
 # Memuat data untuk pengkodean dan penskalaan
 data = pd.read_csv('onlinefoods.csv')
