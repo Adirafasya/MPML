@@ -4,7 +4,7 @@ import joblib
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 # Memuat model terbaik
-model = joblib.load('best_model.pkl')
+model = joblib.load('modelrf.pkl')
 
 # Memuat data untuk pengkodean dan penskalaan
 data = pd.read_csv('onlinefoods.csv')
