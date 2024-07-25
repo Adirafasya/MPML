@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
-# Memuat model Random Forest yang telah dilatih
+# Memuat model terbaik
 model = joblib.load('modelrf.pkl')
 
 # Memuat data untuk pengkodean dan penskalaan
@@ -15,7 +15,7 @@ required_columns = ['Age', 'Gender', 'Marital Status', 'Occupation', 'Monthly In
 # Pastikan hanya kolom yang diperlukan ada
 data = data[required_columns]
 
-# Pra-pemrosesan data untuk pengkodean dan penskalaan
+# Pra-pemrosesan data
 label_encoders = {}
 for column in data.select_dtypes(include=['object']).columns:
     le = LabelEncoder()
@@ -37,12 +37,12 @@ def preprocess_input(user_input):
             if input_value in label_encoders[column].classes_:
                 processed_input[column] = label_encoders[column].transform([input_value])
             else:
-                processed_input[column] = [-1]  # Nilai default untuk kategori yang tidak dikenal
+                # Jika nilai tidak dikenal, berikan nilai default seperti -1
+                processed_input[column] = [-1]
     processed_input = pd.DataFrame(processed_input)
     processed_input[numeric_features] = scaler.transform(processed_input[numeric_features])
     return processed_input
-
-# CSS untuk styling
+# CSS for styling
 st.markdown("""
     <style>
     .main {
@@ -110,7 +110,6 @@ user_input = {
     'Pin code': pin_code
 }
 
-# Tombol prediksi dan hasilnya
 if st.button('Predict'):
     user_input_processed = preprocess_input(user_input)
     try:
